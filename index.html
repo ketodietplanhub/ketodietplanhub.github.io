@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Keto Diet Plan — Simple keto guides, tools, and meal plans</title>
+<meta name="description" content="Keto Diet Plan: free keto calculators, meal plans, food lists, and practical guides for beginners.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+
+*{box-sizing:border-box}body{margin:0;background:#141414;color:#f2f2f2;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+.site-header{background:#000;border-bottom:3px solid #f59e0b;padding:18px 0}
+.brand{color:#f59e0b;font-size:28px;font-weight:bold;text-decoration:none}
+.tagline{color:#bbb;margin:4px 0 10px}
+.nav a{color:#f2f2f2;text-decoration:none;margin-right:18px}.nav a:hover{color:#f59e0b}
+.hero{background:#1f1f1f;border-left:5px solid #f59e0b;padding:28px;margin:24px 0;border-radius:8px}
+.hero h1{margin:0 0 8px;color:#fbbf24}
+h1,h2,h3{color:#fbbf24}
+.tool{background:#232323;border:1px solid #444;border-radius:8px;padding:18px;margin:16px 0}
+.tool h3{margin-top:0}
+label{display:block;margin:8px 0 4px}
+input,select{width:100%;max-width:320px;padding:9px;border-radius:6px;border:1px solid #555;background:#141414;color:#f2f2f2}
+button{background:#f59e0b;color:#111;border:none;padding:10px 18px;border-radius:6px;font-weight:bold;cursor:pointer;margin-top:10px}
+button:hover{background:#fbbf24}
+.result{margin-top:12px;padding:10px;background:#141414;border-left:4px solid #f59e0b;border-radius:4px}
+.guide-list{list-style:none;padding:0}.guide-list li{background:#232323;border:1px solid #444;border-radius:8px;padding:14px;margin:10px 0}
+.guide-list a{color:#fbbf24;font-weight:bold;text-decoration:none;font-size:18px}
+.guide-list p{color:#ccc;margin:6px 0 0}
+.guide h1{color:#fbbf24}.lede{font-size:18px;color:#ddd}
+.site-footer{background:#000;border-top:3px solid #f59e0b;padding:20px 0;margin-top:40px;color:#aaa}
+.site-footer a{color:#fbbf24}
+a{color:#fbbf24}
+table{border-collapse:collapse;width:100%;margin:12px 0}td,th{border:1px solid #555;padding:8px;text-align:left}
+@media(max-width:600px){.brand{font-size:22px}.hero{padding:18px}}
+.featured-img{width:100%;height:auto;border-radius:8px;margin:12px 0}
+.card-img{width:100%;height:auto;border-radius:8px;display:block;margin-bottom:10px}
+
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap"><a class="brand" href="index.html">Keto Diet Plan</a><p class="tagline">Simple keto guides, tools, and meal plans</p><nav class="nav"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><h1>Keto made simple</h1><p>Free keto calculators, food lists, meal plans, and honest beginner guides. No sign-up, no fuss — just practical help to start and stick with keto.</p></section>
+<section><h2>Free Tools</h2><div class="tool"><h3>Keto Macro Calculator</h3><p>Enter your daily calories to get a keto macro split (70% fat, 25% protein, 5% carbs).</p>
+<label>Daily calories (kcal)</label><input type="number" id="kCal" value="2000" min="800" max="6000">
+<button onclick="ketoMacros()">Calculate macros</button><div class="result" id="kMacroOut">Enter calories and press calculate.</div></div>
+<div class="tool"><h3>Net Carbs Calculator</h3><p>Net carbs = total carbs minus fiber.</p>
+<label>Total carbs (g)</label><input type="number" id="ncTotal" value="30" min="0">
+<label>Fiber (g)</label><input type="number" id="ncFiber" value="8" min="0">
+<button onclick="netCarbs()">Calculate net carbs</button><div class="result" id="ncOut">Enter values and press calculate.</div></div>
+<div class="tool"><h3>BMI Calculator</h3><p>BMI = weight (kg) divided by height in metres squared.</p>
+<label>Weight (kg)</label><input type="number" id="bmiW" value="80" min="20" max="300">
+<label>Height (cm)</label><input type="number" id="bmiH" value="175" min="100" max="250">
+<button onclick="calcBMI()">Calculate BMI</button><div class="result" id="bmiOut">Enter weight and height and press calculate.</div></div>
+<div class="tool"><h3>Keto Meal Planner</h3><p>Pick a day and get a simple keto meal plan.</p>
+<label>Day</label><select id="mealDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select>
+<label>Daily calories (kcal)</label><input type="number" id="mealCal" value="2000" min="800" max="6000">
+<button onclick="ketoMealPlan()">Show my plan</button><div class="result" id="mealOut">Choose a day and press the button.</div></div>
+<div class="tool"><h3>Weight-Loss Timeline on Keto</h3><p>Estimate how long it takes to reach your goal at a safe rate of 0.5 to 1 kg per week.</p>
+<label>Current weight (kg)</label><input type="number" id="wlNow" value="90" min="30" max="300">
+<label>Goal weight (kg)</label><input type="number" id="wlGoal" value="75" min="30" max="300">
+<label>Expected loss per week (kg)</label><select id="wlRate"><option value="0.5">0.5 kg/week (steady)</option><option value="0.75">0.75 kg/week</option><option value="1">1 kg/week (faster)</option></select>
+<button onclick="ketoTimeline()">Calculate timeline</button><div class="result" id="wlOut">Enter your weights and press calculate.</div></div></section>
+<section><h2>Guides</h2><ul class="guide-list"><li><a href="guides/keto-for-beginners.html"><img src="images/keto-for-beginners.jpg" alt="Keto for Beginners" class="card-img">Keto for Beginners</a><p>A plain-language start to the ketogenic diet: how it works, what to eat, and how to begin safely.</p></li><li><a href="guides/keto-foods-list.html"><img src="images/keto-foods-list.jpg" alt="Keto Foods List" class="card-img">Keto Foods List</a><p>The complete list of foods that fit a keto diet, plus the ones to avoid and the ones to watch.</p></li><li><a href="guides/keto-meal-prep.html"><img src="images/keto-meal-prep.jpg" alt="Keto Meal Prep" class="card-img">Keto Meal Prep</a><p>Plan, cook, and store a week of keto meals in one session, with practical storage tips.</p></li><li><a href="guides/common-keto-mistakes.html"><img src="images/common-keto-mistakes.jpg" alt="Common Keto Mistakes" class="card-img">Common Keto Mistakes</a><p>The ten most common keto mistakes, why they stall progress, and how to fix each one.</p></li><li><a href="guides/keto-and-exercise.html"><img src="images/keto-and-exercise.jpg" alt="Keto and Exercise" class="card-img">Keto and Exercise</a><p>How to train on keto: energy, strength, endurance, and what to eat around workouts.</p></li><li><a href="guides/keto-desserts.html"><img src="images/keto-desserts.jpg" alt="Keto Desserts" class="card-img">Keto Desserts</a><p>Sweet treats that stay keto: chocolate, cheesecake, ice cream, and baking swaps that work.</p></li><li><a href="guides/keto-breakfast.html"><img src="images/keto-breakfast.jpg" alt="Keto Breakfast" class="card-img">Keto Breakfast</a><p>Quick and satisfying keto breakfasts, from eggs and avocado to make-ahead muffins.</p></li><li><a href="guides/keto-lunch-ideas.html"><img src="images/keto-lunch-ideas.jpg" alt="Keto Lunch Ideas" class="card-img">Keto Lunch Ideas</a><p>Easy keto lunches for work, home, and on the go — salads, wraps, soups, and leftovers.</p></li><li><a href="guides/keto-dinner-recipes.html"><img src="images/keto-dinner-recipes.jpg" alt="Keto Dinner Recipes" class="card-img">Keto Dinner Recipes</a><p>Ten family-friendly keto dinners, from one-pan chicken to creamy salmon and beef chilli.</p></li><li><a href="guides/keto-snacks.html"><img src="images/keto-snacks.jpg" alt="Keto Snacks" class="card-img">Keto Snacks</a><p>The best keto snacks — sweet, salty, and crunchy — plus what to avoid and when to snack.</p></li><li><a href="guides/keto-drinks.html"><img src="images/keto-drinks.jpg" alt="Keto Drinks" class="card-img">Keto Drinks</a><p>What to drink on keto: water, coffee, tea, and the occasional keto-friendly cocktail.</p></li><li><a href="guides/keto-for-women.html"><img src="images/keto-for-women.jpg" alt="Keto for Women" class="card-img">Keto for Women</a><p>How keto affects women&#x27;s hormones, cycles, and weight loss — and how to adapt it.</p></li><li><a href="guides/keto-and-intermittent-fasting.html"><img src="images/keto-and-intermittent-fasting.jpg" alt="Keto and Intermittent Fasting" class="card-img">Keto and Intermittent Fasting</a><p>Combining keto with intermittent fasting: schedules, benefits, and how to start safely.</p></li><li><a href="guides/keto-flu.html"><img src="images/keto-flu.jpg" alt="Keto Flu" class="card-img">Keto Flu</a><p>What keto flu is, why it happens, and how to prevent and treat it in the first week.</p></li><li><a href="guides/keto-macros-explained.html"><img src="images/keto-macros-explained.jpg" alt="Keto Macros Explained" class="card-img">Keto Macros Explained</a><p>What keto macros are, how to calculate yours, and how to track them without stress.</p></li><li><a href="guides/keto-shopping-list.html"><img src="images/keto-shopping-list.jpg" alt="Keto Shopping List" class="card-img">Keto Shopping List</a><p>A printable keto shopping list organised by aisle, plus pantry staples and what to skip.</p></li><li><a href="guides/keto-on-a-budget.html"><img src="images/keto-on-a-budget.jpg" alt="Keto on a Budget" class="card-img">Keto on a Budget</a><p>How to eat keto cheaply: affordable proteins, bulk buying, and meals that cost less.</p></li><li><a href="guides/keto-travel-tips.html"><img src="images/keto-travel-tips.jpg" alt="Keto Travel Tips" class="card-img">Keto Travel Tips</a><p>Stay keto on holiday, on flights, and on road trips — packing, ordering, and planning.</p></li><li><a href="guides/keto-and-cholesterol.html"><img src="images/keto-and-cholesterol.jpg" alt="Keto and Cholesterol" class="card-img">Keto and Cholesterol</a><p>What keto does to cholesterol, what the numbers mean, and when to talk to your doctor.</p></li><li><a href="guides/breaking-a-keto-plateau.html"><img src="images/breaking-a-keto-plateau.jpg" alt="Breaking a Keto Plateau" class="card-img">Breaking a Keto Plateau</a><p>Why weight loss stalls on keto and the practical steps that restart it.</p></li></ul></section>
+</main>
+<footer class="site-footer"><div class="wrap"><p>Keto Diet Plan — Simple keto guides, tools, and meal plans</p><p><a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a> | <a href="disclaimer.html">Disclaimer</a></p><p>Content on this site is for general information only and is not medical advice.</p></div></footer>
+<script>
+
+function ketoMacros(){var c=parseFloat(document.getElementById('kCal').value);
+if(!c||c<=0){document.getElementById('kMacroOut').textContent='Please enter a valid calorie number.';return;}
+var fat=Math.round(c*0.70/9),pro=Math.round(c*0.25/4),carb=Math.round(c*0.05/4);
+document.getElementById('kMacroOut').innerHTML='At '+c+' kcal per day: <strong>'+fat+' g fat</strong> (70%), <strong>'+pro+' g protein</strong> (25%), <strong>'+carb+' g carbs</strong> (5%).';}
+function netCarbs(){var t=parseFloat(document.getElementById('ncTotal').value),f=parseFloat(document.getElementById('ncFiber').value);
+if(isNaN(t)||isNaN(f)||f>t){document.getElementById('ncOut').textContent='Check your numbers: fiber cannot be more than total carbs.';return;}
+document.getElementById('ncOut').innerHTML='Net carbs: <strong>'+(t-f)+' g</strong> ('+t+' g total carbs - '+f+' g fiber).';}
+function calcBMI(){var w=parseFloat(document.getElementById('bmiW').value),h=parseFloat(document.getElementById('bmiH').value)/100;
+if(!w||!h||h<=0){document.getElementById('bmiOut').textContent='Please enter a valid weight and height.';return;}
+var b=w/(h*h),cat=b<18.5?'Underweight':b<25?'Healthy weight':b<30?'Overweight':'Obese';
+document.getElementById('bmiOut').innerHTML='Your BMI is <strong>'+b.toFixed(1)+'</strong> ('+cat+').';}
+function ketoMealPlan(){var d=document.getElementById('mealDay').value,c=document.getElementById('mealCal').value;
+var plans={'Monday':['Eggs with avocado and spinach','Grilled chicken salad with olive oil','Salmon with buttered broccoli'],
+'Tuesday':['Greek yoghurt with nuts and berries','Beef stir-fry with cauliflower rice','Pork chops with green beans'],
+'Wednesday':['Cheese omelette with mushrooms','Tuna salad with avocado','Chicken thighs with roasted courgette'],
+'Thursday':['Chia pudding made with coconut milk','Turkey lettuce wraps','Baked cod with asparagus and butter'],
+'Friday':['Scrambled eggs with smoked salmon','Cobb salad with chicken and egg','Steak with cauliflower mash'],
+'Saturday':['Keto pancakes with berries','Bunless burger with salad','Roast chicken with Brussels sprouts'],
+'Sunday':['Frittata with cheese and peppers','Shrimp garlic butter with zucchini noodles','Slow-cooked beef with cabbage']};
+var p=plans[d]||plans['Monday'];
+document.getElementById('mealOut').innerHTML='<strong>'+d+' — about '+c+' kcal</strong><br>Breakfast: '+p[0]+'<br>Lunch: '+p[1]+'<br>Dinner: '+p[2];}
+function ketoTimeline(){var now=parseFloat(document.getElementById('wlNow').value),goal=parseFloat(document.getElementById('wlGoal').value),rate=parseFloat(document.getElementById('wlRate').value);
+if(!now||!goal||goal>=now){document.getElementById('wlOut').textContent='Goal weight must be lower than current weight.';return;}
+var weeks=Math.ceil((now-goal)/rate),months=(weeks/4.33).toFixed(1);
+document.getElementById('wlOut').innerHTML='You need to lose <strong>'+(now-goal)+' kg</strong>. At '+rate+' kg per week that takes about <strong>'+weeks+' weeks</strong> (roughly '+months+' months).';}
+
+</script>
+</body>
+</html>
