@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://ketodietplan.github.io/sitemap.xml
+Sitemap: https://ketodietplanhub.github.io/sitemap.xml
+
